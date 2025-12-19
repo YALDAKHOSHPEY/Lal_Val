@@ -1,0 +1,28 @@
+/* src/styles/theme.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #2563eb;
+  --secondary: #7c3aed;
+  --background: #ffffff;
+  --text: #1f2937;
+  --card: #f9fafb;
+  --border: #e5e7eb;
+}
+
+.dark {
+  --primary: #3b82f6;
+  --secondary: #8b5cf6;
+  --background: #111827;
+  --text: #f9fafb;
+  --card: #1f2937;
+  --border: #374151;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
+}
