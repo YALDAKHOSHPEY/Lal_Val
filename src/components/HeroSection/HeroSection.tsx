@@ -1,162 +1,224 @@
 ﻿'use client';
 
 import { useState, useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react';
+import { Instagram, Code, Cpu, Database, Globe, Server, Palette } from 'lucide-react';
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   
   const slides = [
     {
-      title: 'توسعهی نرمافزارهای مدرن',
+      title: 'طراحی وب‌سایت حرفه‌ای',
       subtitle: 'با Next.js و Django',
-      description: 'ساخت اپلیکیشنهای سریع امن و مقیاسپذیر با آخرین تکنولوژیها',
-      color: 'from-purple-600 via-pink-500 to-rose-500',
-      emoji: ''
+      description: 'ساخت وب‌سایت‌های مدرن، سریع و امن با آخرین تکنولوژی‌های روز',
+      icon: <Code className="w-16 h-16" />,
+      color: 'from-blue-600 to-purple-600',
+      gradient: 'bg-gradient-to-br from-blue-600 to-purple-600',
+      stats: ['Next.js', 'React', 'TypeScript']
     },
     {
-      title: 'تجربه کاربری خارقالعاده',
-      subtitle: 'طراحی UI/UX حرفهای',
-      description: 'ساخت رابطهای کاربری زیبا و intuitive که کاربران عاشقش میشوند',
-      color: 'from-blue-500 via-cyan-500 to-teal-500',
-      emoji: '🎨'
+      title: 'توسعه فول استک',
+      subtitle: 'Frontend و Backend یکپارچه',
+      description: 'ارائه راه‌حل‌های کامل از طراحی رابط کاربری تا توسعه سمت سرور',
+      icon: <Server className="w-16 h-16" />,
+      color: 'from-purple-600 to-pink-600',
+      gradient: 'bg-gradient-to-br from-purple-600 to-pink-600',
+      stats: ['Node.js', 'Django', 'PostgreSQL']
     },
     {
-      title: 'پشتیبانی و نگهداری',
-      subtitle: 'همراه شما در هر مرحله',
-      description: 'از ایده تا اجرا و نگهداری، کنار شما هستیم',
-      color: 'from-green-500 via-emerald-500 to-lime-500',
-      emoji: ''
+      title: 'تجربه کاربری بی‌نظیر',
+      subtitle: 'UI/UX طراحی شده',
+      description: 'ساخت رابط‌های کاربری زیبا و intuitive که کاربران عاشقش می‌شوند',
+      icon: <Palette className="w-16 h-16" />,
+      color: 'from-pink-600 to-rose-600',
+      gradient: 'bg-gradient-to-br from-pink-600 to-rose-600',
+      stats: ['Tailwind CSS', 'Figma', 'Responsive']
     }
   ];
 
   useEffect(() => {
+    setIsVisible(true);
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
+  const handleInstagramClick = () => {
+    window.open('https://instagram.com/yalda_twinn', '_blank');
+  };
+
+  // تابع برای گرفتن رنگ‌های اسلاید فعلی
+  const getCurrentSlideColors = () => {
+    return slides[currentSlide];
+  };
+
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* گرادینت پسزمینه */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900/20"></div>
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900/10">
+      {/* گرادینت پویا */}
+      <div className={`absolute inset-0 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-pink-900/10" />
+      </div>
       
-      {/* افکتهای گرافیکی */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl dark:bg-purple-900/20"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-300/10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl dark:bg-pink-900/20"></div>
+      {/* افکت‌های گرافیکی */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-500" />
       
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* متنها */}
-          <div className="text-center lg:text-right">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 mb-6">
-              <Sparkles className="w-4 h-4 text-purple-500" />
-              <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">
-                خوش آمدید به لل ول
+      {/* الگوی نقطه‌ای */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[radial-gradient(circle_at_1px_1px,currentColor_1px,transparent_0)] bg-[length:40px_40px]" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* متن‌ها */}
+          <div className={`text-center lg:text-right transition-all duration-1000 delay-300 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}>
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 dark:border-blue-500/30 mb-8">
+              <span className="text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                دو میرور | تخصص در Next.js
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="block mb-4">ما میسازیم</span>
-              <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-rose-500 bg-clip-text text-transparent">
-                آینده دیجیتال
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <span className="block mb-4 text-gray-800 dark:text-white">
+                طراحی وب‌سایت با
+              </span>
+              <span className="block">
+                <span className={`text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r ${getCurrentSlideColors().color} bg-clip-text text-transparent transition-all duration-700`}>
+                  Next.js
+                </span>
+                <span className="text-gray-800 dark:text-white mx-2">و</span>
+                <span className={`text-4xl md:text-5xl lg:text-6xl bg-gradient-to-r ${getCurrentSlideColors().color} bg-clip-text text-transparent transition-all duration-700`}>
+                  Django
+                </span>
               </span>
             </h1>
             
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0 lg:mr-auto">
-              ویژا و یلدا دو خواهر دوقلو با تخصص در توسعه فولاستک همراه شما در ساخت محصولات دیجیتالی بینظیر.
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0 lg:mr-auto leading-relaxed">
+              طراحی و توسعه وب‌سایت‌های مدرن، سریع و کاملاً سفارشی با استفاده از آخرین تکنولوژی‌های روز
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300">
-                <span className="relative z-10">شروع پروژه</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-              
-              <button className="px-8 py-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-800 dark:text-white font-bold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-purple-500 hover:shadow-lg transition-all duration-300">
-                <span className="flex items-center justify-center gap-2">
-                  <span>مشاهده نمونه کارها</span>
-                  <ArrowLeft className="w-4 h-4" />
-                </span>
-              </button>
+            {/* تکنولوژی‌ها */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
+              {slides[currentSlide].stats.map((tech, index) => (
+                <div
+                  key={index}
+                  className="px-4 py-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 group hover:border-blue-500 transition-all duration-300"
+                >
+                  <span className="font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    {tech}
+                  </span>
+                </div>
+              ))}
             </div>
             
-            {/* آمارهای سریع */}
-            <div className="flex justify-center lg:justify-start gap-8 mt-12">
+            {/* بخش ارتباط با ما - اینستاگرام */}
+            <div className={`mt-8 lg:mt-12 transition-all duration-1000 delay-500 ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+            }`}>
+              <div className="text-center lg:text-right">
+                <button 
+                  onClick={handleInstagramClick}
+                  className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-lg rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] mx-auto lg:mx-0"
+                >
+                  <Instagram className="w-6 h-6" />
+                  <span className="relative z-10">
+                    سفارش طراحی سایت از طریق اینستاگرام
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </button>
+              </div>
+            </div>
+            
+            {/* آمارهای کیفی */}
+            <div className="flex justify-center lg:justify-start gap-6 mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
               {[
-                { number: '50+', label: 'پروژه موفق' },
-                { number: '100%', label: 'رضایت مشتری' },
-                { number: '/', label: 'پشتیبانی' }
-              ].map((stat, idx) => (
-                <div key={idx} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold gradient-text">{stat.number}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">{stat.label}</div>
+                { icon: <Cpu className="w-5 h-5" />, label: 'توسعه اختصاصی' },
+                { icon: <Database className="w-5 h-5" />, label: 'پایگاه داده امن' },
+                { icon: <Globe className="w-5 h-5" />, label: 'پشتیبانی دائمی' }
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-2">
+                  <div className="text-blue-600 dark:text-blue-400">
+                    {item.icon}
+                  </div>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {item.label}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
           
           {/* اسلایدر */}
-          <div className="relative">
-            <div className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+          <div className={`relative transition-all duration-1000 delay-500 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}>
+            <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl border border-gray-300/50 dark:border-gray-700/50">
               {slides.map((slide, index) => (
                 <div
                   key={index}
                   className={`absolute inset-0 transition-all duration-700 ease-in-out ${
                     index === currentSlide
-                      ? 'opacity-100 translate-x-0'
-                      : 'opacity-0 translate-x-full'
+                      ? 'opacity-100 scale-100'
+                      : 'opacity-0 scale-95'
                   }`}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${slide.color} opacity-90`}></div>
+                  {/* Background Gradient */}
+                  <div className={`absolute inset-0 ${slide.gradient} opacity-90`} />
+                  
+                  {/* Pattern Overlay */}
+                  <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_30%_30%,white_2px,transparent_0)] bg-[length:60px_60px]" />
+                  
+                  {/* Content */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-white">
-                    <div className="text-6xl mb-6 animate-bounce">{slide.emoji}</div>
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4">{slide.title}</h3>
-                    <p className="text-xl mb-2 opacity-90">{slide.subtitle}</p>
-                    <p className="text-lg opacity-80 max-w-md text-center">{slide.description}</p>
+                    <div className={`mb-8 p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 ${
+                      index === currentSlide ? 'animate-pulse' : ''
+                    }`}>
+                      {slide.icon}
+                    </div>
+                    
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 text-center max-w-md">
+                      {slide.title}
+                    </h3>
+                    
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm mb-4">
+                      <span className="text-lg font-medium">{slide.subtitle}</span>
+                    </div>
+                    
+                    <p className="text-lg opacity-90 max-w-md text-center leading-relaxed">
+                      {slide.description}
+                    </p>
+                    
+                    {/* Progress Bar */}
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-64 h-1.5 bg-white/20 rounded-full overflow-hidden">
+                      <div 
+                        className={`h-full ${slide.gradient} transition-all duration-100`}
+                        style={{ width: index === currentSlide ? '100%' : '0%' }}
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
             
-            {/* کنترلهای اسلایدر */}
-            <div className="flex justify-center gap-4 mt-6">
+            {/* کنترل‌های اسلایدر */}
+            <div className="flex justify-center gap-3 mt-8">
               {slides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide
-                      ? 'bg-purple-600 w-8'
-                      : 'bg-gray-300 dark:bg-gray-700 hover:bg-purple-400'
+                      ? `w-8 bg-gradient-to-r ${slides[index].color}`
+                      : 'bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600'
                   }`}
                   aria-label={`برو به اسلاید ${index + 1}`}
                 />
               ))}
             </div>
-            
-            {/* فلشهای ناوبری */}
-            <button
-              onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
-            >
-              <ArrowRight className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-            </button>
-            <button
-              onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
-            >
-              <ArrowLeft className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-            </button>
           </div>
-        </div>
-      </div>
-      
-      {/* اسکرول پایین */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>
